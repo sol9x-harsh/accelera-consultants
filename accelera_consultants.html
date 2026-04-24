@@ -1,0 +1,1532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accelera Consultants - Accelerating Your Financial Success</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --yellow: #ffc336;
+        --navy: #023357;
+        --navy-dark: #152448;
+        --text-dark: #1a2f5a;
+        --white: #ffffff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Open Sans', sans-serif;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* ─── NAVBAR ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: transparent;
+        z-index: 1000;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 60px;
+        box-shadow: none;
+        transition:
+          background 0.4s ease,
+          height 0.4s ease,
+          backdrop-filter 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        height: 72px !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        text-decoration: none;
+      }
+
+      .logo-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .logo-circle {
+        width: 64px;
+        height: 64px;
+        background: var(--navy);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding-bottom: 8px;
+      }
+
+      .logo-circle svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .logo-text-box {
+        background: #f8fafc;
+        padding: 0.5px 5px 1.5px;
+        margin-top: -28px;
+        z-index: 2;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 1px;
+      }
+
+      .logo-text-box span {
+        font-family: 'Raleway', sans-serif;
+        font-size: 5.5px;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: rgba(26, 47, 90, 0.65);
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        transition: color 0.3s;
+        position: relative;
+        padding-bottom: 4px;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--navy);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--navy);
+      }
+
+      .nav-cta {
+        background: var(--navy);
+        color: #fff !important;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+        text-decoration: none;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+
+      .nav-cta:hover {
+        background: #243f78 !important;
+        color: #fff !important;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+
+      /* ─── HERO ─── */
+      #home {
+        background: var(--yellow);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 100px 80px 80px;
+        position: relative;
+        overflow: hidden;
+        gap: 80px;
+      }
+
+      .hero-content {
+        flex: 1.2;
+        max-width: 620px;
+        z-index: 2;
+        padding-bottom: 40px;
+      }
+
+      .hero-title {
+        font-family: 'Raleway', sans-serif;
+        font-size: clamp(46px, 6vw, 82px);
+        font-weight: 900;
+        color: var(--navy);
+        line-height: 1;
+        letter-spacing: -2px;
+        margin-bottom: 24px;
+        text-transform: uppercase;
+      }
+
+      .hero-sub {
+        font-family: 'Raleway', sans-serif;
+        font-size: clamp(13px, 1.5vw, 16px);
+        font-weight: 500;
+        color: var(--navy);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+      }
+
+      .btn-dark {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        padding: 16px 40px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        transition:
+          background 0.3s ease,
+          transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(26, 47, 90, 0.2);
+      }
+
+      .btn-dark:hover {
+        background: #243f78;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(26, 47, 90, 0.3);
+      }
+
+      .hero-illustration {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 650px;
+      }
+
+      .hero-illustration img {
+        width: 100%;
+        max-width: 580px;
+        height: auto;
+        object-fit: contain;
+      }
+
+      /* ─── SERVICES ─── */
+      #services {
+        background: var(--yellow);
+        padding: 80px 60px 100px;
+        text-align: center;
+      }
+
+      .services-main-title {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        font-size: clamp(28px, 4vw, 48px);
+        color: var(--navy);
+        max-width: 900px;
+        margin: 0 auto 80px;
+        line-height: 1.1;
+        letter-spacing: -1px;
+      }
+
+      .services-grid {
+        display: grid;
+        gap: 60px 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .services-grid.top {
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 80px;
+      }
+
+      .services-grid.bottom {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+      }
+
+      .service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 20px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        border-radius: 12px;
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .service-icon {
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+      }
+
+      .service-icon svg,
+      .service-icon img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .service-title {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 17px;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+
+      .service-desc {
+        font-size: 15px;
+        color: var(--navy);
+        line-height: 1.65;
+        max-width: 380px;
+        text-align: center;
+      }
+
+      /* ─── FOR EVERYONE ─── */
+      #for-everyone {
+        background: var(--navy);
+        padding: 80px 60px 100px;
+        text-align: center;
+      }
+
+      .everyone-title {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        font-size: clamp(26px, 3.5vw, 42px);
+        color: #fff;
+        margin-bottom: 60px;
+        letter-spacing: -0.5px;
+      }
+
+      .everyone-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .everyone-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .everyone-img {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #2a3f6e;
+      }
+
+      .everyone-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      .everyone-card:hover .everyone-img img {
+        transform: scale(1.1);
+      }
+
+      /* Placeholder gradient images */
+      .img-placeholder {
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+      }
+
+      .everyone-label {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 17px;
+        color: #fff;
+      }
+
+      /* ─── ABOUT / FOUNDERS ─── */
+      #about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 500px;
+      }
+
+      .about-left {
+        background: var(--yellow);
+        padding: 80px 60px 80px 60px;
+      }
+
+      .about-right {
+        background: #0a0f2e;
+        position: relative;
+        overflow: hidden;
+        min-height: 400px;
+      }
+
+      .about-right-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 60% 40%, #1a2a6c 0%, #0a0f2e 60%),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 255, 255, 0.03) 40px,
+            rgba(255, 255, 255, 0.03) 41px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 255, 255, 0.03) 40px,
+            rgba(255, 255, 255, 0.03) 41px
+          );
+      }
+
+      .about-chart-lines {
+        position: absolute;
+        inset: 0;
+        opacity: 0.5;
+      }
+
+      .founders-heading {
+        font-family: 'Raleway', sans-serif;
+        font-size: 38px;
+        font-weight: 800;
+        color: var(--navy);
+        margin-bottom: 40px;
+      }
+
+      .founder {
+        margin-bottom: 36px;
+      }
+
+      .founder-name {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 17px;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+
+      .founder-bio {
+        font-size: 14.5px;
+        color: var(--navy);
+        line-height: 1.7;
+      }
+
+      /* ─── CONTACT ─── */
+      #contact {
+        background: var(--navy-dark);
+        padding: 100px 60px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+      }
+
+      .contact-label {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        opacity: 0.85;
+      }
+
+      .contact-heading {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        font-size: clamp(28px, 3vw, 42px);
+        color: #fff;
+        margin-bottom: 44px;
+        letter-spacing: -0.5px;
+      }
+
+      .contact-detail {
+        margin-bottom: 24px;
+      }
+
+      .contact-detail-label {
+        font-weight: 700;
+        font-size: 15px;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+
+      .contact-detail-value {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: relative;
+      }
+
+      .form-field label {
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+      }
+
+      .form-field input,
+      .form-field textarea {
+        background: transparent;
+        border: none;
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+        outline: none;
+        color: #fff;
+        font-size: 16px;
+        font-family: 'Open Sans', sans-serif;
+        padding: 8px 0;
+        transition: border-color 0.3s ease;
+        resize: none;
+      }
+
+      .form-field input:focus,
+      .form-field textarea:focus {
+        border-bottom-color: var(--yellow);
+      }
+
+      .form-field input:hover,
+      .form-field textarea:hover {
+        border-bottom-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .form-field input:focus + label,
+      .form-field textarea:focus + label {
+        color: var(--yellow);
+      }
+
+      .form-field.full {
+        border-bottom: none;
+      }
+
+      .btn-yellow {
+        display: inline-block;
+        background: var(--yellow);
+        color: var(--navy);
+        padding: 16px 48px;
+        border-radius: 30px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 800;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.3s ease,
+          transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.3s ease;
+        align-self: flex-start;
+        box-shadow: 0 4px 15px rgba(255, 195, 54, 0.2);
+      }
+
+      .btn-yellow:hover {
+        background: #eeb01e;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(255, 195, 54, 0.3);
+      }
+
+      /* ─── MAP ─── */
+      #map {
+        width: 100%;
+        height: 420px;
+        border: none;
+        display: block;
+      }
+
+      .map-container {
+        width: 100%;
+        height: 420px;
+        background: #e5e3df;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--yellow);
+        padding: 28px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--navy);
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 500;
+      }
+
+      /* ─── CHAT WIDGET ─── */
+      .chat-widget {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        width: 54px;
+        height: 54px;
+        background: var(--navy);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 999;
+        box-shadow: 0 4px 18px rgba(26, 47, 90, 0.35);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .chat-widget:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 24px rgba(26, 47, 90, 0.4);
+      }
+
+      .chat-widget svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      /* ─── BACK TO TOP ─── */
+      .back-to-top {
+        position: fixed;
+        bottom: 100px;
+        right: 28px;
+        width: 44px;
+        height: 44px;
+        background: #fff;
+        border: 1.5px solid var(--navy);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: var(--navy);
+        color: #fff;
+        transform: translateY(-5px);
+      }
+
+      .back-to-top svg {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+      }
+
+      /* ─── SCROLL REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.2, 0.6, 0.2, 1),
+          transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .delay-1 {
+        transition-delay: 0.1s;
+      }
+      .delay-2 {
+        transition-delay: 0.2s;
+      }
+      .delay-3 {
+        transition-delay: 0.3s;
+      }
+      .delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ─── MOBILE ─── */
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 20px;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 72px;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          padding: 30px 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          gap: 24px;
+          text-align: center;
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-links a {
+          font-size: 18px;
+        }
+
+        .nav-cta-mobile {
+          display: inline-block;
+          margin-top: 10px;
+        }
+
+        .nav-cta-wrap {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+
+        #home {
+          flex-direction: column;
+          padding: 110px 24px 60px;
+          min-height: auto;
+          text-align: center;
+          gap: 40px;
+        }
+
+        .hero-content {
+          max-width: 100%;
+          padding-bottom: 0;
+        }
+
+        .hero-illustration {
+          justify-content: center;
+          max-width: 100%;
+        }
+
+        .hero-illustration img {
+          max-width: 400px;
+        }
+
+        #services {
+          padding: 60px 24px 80px;
+        }
+        .services-main-title {
+          margin-bottom: 50px;
+        }
+        .services-grid.top,
+        .services-grid.bottom {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .services-grid.bottom {
+          max-width: 100%;
+        }
+
+        #for-everyone {
+          padding: 60px 24px 80px;
+        }
+        .everyone-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        #about {
+          grid-template-columns: 1fr;
+        }
+        .about-right {
+          min-height: 260px;
+        }
+        .about-left {
+          padding: 60px 24px;
+        }
+
+        #contact {
+          grid-template-columns: 1fr;
+          padding: 60px 24px;
+          gap: 48px;
+        }
+
+        .contact-form {
+          padding: 30px 20px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #home {
+          padding-top: 120px;
+        }
+        .hero-title {
+          font-size: 38px;
+        }
+        #services,
+        #for-everyone,
+        .about-left,
+        #contact {
+          padding: 40px 16px;
+        }
+        .everyone-grid {
+          grid-template-columns: 1fr;
+        }
+        .services-main-title {
+          font-size: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <a href="#home" class="logo-wrapper">
+        <div class="logo-circle">
+          <svg
+            viewBox="0 0 44 44"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8,32 L18,22 L26,28 L38,10"
+              stroke="white"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            />
+            <polyline
+              points="30,10 38,10 38,18"
+              stroke="white"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            />
+            <rect x="6" y="34" width="5" height="4" fill="white" rx="1" />
+            <rect x="14" y="28" width="5" height="10" fill="white" rx="1" />
+            <rect x="22" y="24" width="5" height="14" fill="white" rx="1" />
+          </svg>
+        </div>
+        <div class="logo-text-box">
+          <span>ACCELERA CONSULTANTS</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <span class="nav-cta-wrap">
+        <a href="#about" class="nav-cta">Learn More</a>
+      </span>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home">
+      <div class="hero-content reveal">
+        <h1 class="hero-title">ACCELERA<br />CONSULTANTS</h1>
+        <p class="hero-sub">Accelerating Your Financial Success</p>
+        <a href="#about" class="btn-dark">Learn More</a>
+      </div>
+      <div class="hero-illustration reveal delay-2">
+        <img
+          src="images/hero_illustration_1.png"
+          alt="Business Growth Illustration"
+          style="width: 100%; max-width: 600px; height: auto"
+        />
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2 class="services-main-title reveal">
+        Taking Your Business to the Next Level
+      </h2>
+
+      <div class="services-grid top">
+        <!-- Service: Debt Syndication -->
+        <div class="service-card reveal delay-1">
+          <div class="service-icon">
+            <svg
+              viewBox="0 0 120 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="42" cy="48" r="28" fill="var(--navy)" />
+              <circle cx="78" cy="68" r="28" fill="#5b7fa6" opacity="0.8" />
+              <circle cx="45" cy="110" r="3.5" fill="var(--navy)" />
+            </svg>
+          </div>
+          <h3 class="service-title">Debt Syndication Services</h3>
+          <p class="service-desc">
+            Debt advisory (working capital, term loans), project finance,
+            international funding, credit rating, equity financing support.
+          </p>
+        </div>
+
+        <!-- Service: Investment Banking -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg
+              viewBox="0 0 120 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M35,70 L58,95 L105,35"
+                stroke="var(--navy)"
+                stroke-width="12"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+              <circle cx="55" cy="25" r="3.5" fill="var(--navy)" />
+            </svg>
+          </div>
+          <h3 class="service-title">Investment Banking</h3>
+          <p class="service-desc">
+            Mandate management, due diligence, valuations, transaction support,
+            compliance, capital raising, alternate financing, SME IPO
+            assistance.
+          </p>
+        </div>
+
+        <!-- Service: Business Process Re-engineering -->
+        <div class="service-card reveal delay-2">
+          <div class="service-icon">
+            <svg
+              viewBox="0 0 120 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="35" y="35" width="40" height="40" fill="var(--navy)" />
+              <rect
+                x="55"
+                y="55"
+                width="40"
+                height="40"
+                fill="#5b7fa6"
+                opacity="0.8"
+              />
+              <circle cx="108" cy="112" r="3.5" fill="var(--navy)" />
+            </svg>
+          </div>
+          <h3 class="service-title">Business Process Re-engineering</h3>
+          <p class="service-desc">
+            Strategic business advice, process re-engineering, profit
+            maximization, cost management, profitability analysis, capital
+            budgeting, risk management, promoter counseling.
+          </p>
+        </div>
+      </div>
+
+      <div class="services-grid bottom">
+        <!-- Service: Stress Resolution -->
+        <div class="service-card reveal delay-2">
+          <div class="service-icon">
+            <svg
+              viewBox="0 0 120 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g transform="translate(10,10)">
+                <polygon
+                  points="50,5 70,25 50,45 30,25"
+                  fill="none"
+                  stroke="#5b7fa6"
+                  stroke-width="4"
+                />
+                <polygon
+                  points="50,10 65,25 50,40 35,25"
+                  fill="#5b7fa6"
+                  opacity="0.2"
+                />
+                <polygon
+                  points="50,55 70,75 50,95 30,75"
+                  fill="none"
+                  stroke="#5b7fa6"
+                  stroke-width="4"
+                />
+                <polygon
+                  points="50,60 65,75 50,90 35,75"
+                  fill="#5b7fa6"
+                  opacity="0.2"
+                />
+                <polygon
+                  points="5,50 25,30 45,50 25,70"
+                  fill="none"
+                  stroke="#5b7fa6"
+                  stroke-width="4"
+                />
+                <polygon
+                  points="55,50 75,30 95,50 75,70"
+                  fill="none"
+                  stroke="#5b7fa6"
+                  stroke-width="4"
+                />
+                <polygon
+                  points="50,25 70,45 50,65 30,45"
+                  fill="none"
+                  stroke="#4a6e90"
+                  stroke-width="3.5"
+                />
+                <polygon
+                  points="25,50 45,30 65,50 45,70"
+                  fill="none"
+                  stroke="#4a6e90"
+                  stroke-width="3.5"
+                />
+              </g>
+            </svg>
+          </div>
+          <h3 class="service-title">Stress resolution Services</h3>
+          <p class="service-desc">
+            Collaboration with law firm for corporate insolvency, financial
+            stress resolution, process re-engineering, refinance, and strategic
+            business advice.
+          </p>
+        </div>
+
+        <!-- Service: CA Services -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg
+              viewBox="0 0 120 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="60" cy="60" r="52" fill="#b8a24a" opacity="0.65" />
+              <clipPath id="circleClipServices">
+                <circle cx="60" cy="60" r="52" />
+              </clipPath>
+              <g clip-path="url(#circleClipServices)">
+                <ellipse cx="60" cy="75" rx="52" ry="28" fill="#2a4a72" />
+                <ellipse cx="60" cy="80" rx="52" ry="22" fill="#1a3055" />
+                <ellipse cx="60" cy="85" rx="52" ry="16" fill="#102040" />
+                <circle cx="60" cy="66" r="14" fill="#c9a200" opacity="0.8" />
+              </g>
+              <circle
+                cx="60"
+                cy="60"
+                r="52"
+                fill="none"
+                stroke="#9a8235"
+                stroke-width="1"
+                opacity="0.4"
+              />
+            </svg>
+          </div>
+          <h3 class="service-title">CA services</h3>
+          <p class="service-desc">
+            Bookkeeping, financial reporting, statutory compliance, internal
+            controls, payroll management, audit support, tax planning, GST
+            compliance, and advisory services.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOR EVERYONE -->
+    <section id="for-everyone">
+      <h2 class="everyone-title reveal">We have something for everyone</h2>
+      <div class="everyone-grid">
+        <div class="everyone-card reveal delay-1">
+          <div class="everyone-img">
+            <img src="images/new_business.png" alt="New Business Entity" />
+          </div>
+          <span class="everyone-label">New Business Entity</span>
+        </div>
+
+        <div class="everyone-card reveal delay-2">
+          <div class="everyone-img">
+            <img src="images/existing_business.png" alt="Existing Business" />
+          </div>
+          <span class="everyone-label">Existing Business</span>
+        </div>
+
+        <div class="everyone-card reveal delay-3">
+          <div class="everyone-img">
+            <img src="images/fund_raising.png" alt="Fund Raising" />
+          </div>
+          <span class="everyone-label">Fund Raising</span>
+        </div>
+
+        <div class="everyone-card reveal delay-4">
+          <div class="everyone-img">
+            <img src="images/special_situation.png" alt="Special Situation" />
+          </div>
+          <span class="everyone-label">Special Situation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / FOUNDERS -->
+    <section id="about">
+      <div class="about-left reveal">
+        <h2 class="founders-heading">Founders</h2>
+
+        <div class="founder reveal delay-1">
+          <h4 class="founder-name">Harpreet Luthra</h4>
+          <p class="founder-bio">
+            Harpreet is a MBA with 22+ Years of experience in commercial
+            banking. He has experience in entire life cycle of SME &amp;
+            Mid-Market clients for raising finance.
+          </p>
+          <p class="founder-bio">
+            He has been on Regional leadership position in one of the largest
+            Foreign Bank in India for SME financing. He has been instrumental in
+            sourcing and managing one of the finest portfolio for leading
+            foreign bank in India.
+          </p>
+          <p class="founder-bio">
+            He has expertise in fund raising, financing structuring and
+            relationship management.
+          </p>
+        </div>
+
+        <div class="founder reveal delay-2">
+          <h4 class="founder-name">Harsh Gupta</h4>
+          <p class="founder-bio">
+            Harsh is a Chartered Accountants with 20+ Years of professional
+            experience. He has been on leadership positions in Banks for 12
+            years. He has been Head of Credit department for a leading private
+            sector bank for years.
+          </p>
+          <p class="founder-bio">
+            He was heading stressed asset management vertical in leading private
+            sector bank in last assignment. He has expertise in Investment
+            Banking, Structured Credit, Stress Resolution &amp; Fund raising.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="about-right-bg"></div>
+        <!-- Animated financial chart SVG -->
+        <svg
+          id="about-chart"
+          class="about-chart-lines"
+          viewBox="0 0 700 500"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <marker
+              id="arrow-white"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="4"
+              markerHeight="4"
+              orient="auto"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.7)" />
+            </marker>
+            <marker
+              id="arrow-yellow"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="4"
+              markerHeight="4"
+              orient="auto"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(245,197,24,0.5)" />
+            </marker>
+          </defs>
+          <!-- Grid lines -->
+          <g opacity="0.12" stroke="white" stroke-width="0.8">
+            <line x1="0" y1="100" x2="700" y2="100" />
+            <line x1="0" y1="200" x2="700" y2="200" />
+            <line x1="0" y1="300" x2="700" y2="300" />
+            <line x1="0" y1="400" x2="700" y2="400" />
+            <line x1="100" y1="0" x2="100" y2="500" />
+            <line x1="200" y1="0" x2="200" y2="500" />
+            <line x1="300" y1="0" x2="300" y2="500" />
+            <line x1="400" y1="0" x2="400" y2="500" />
+            <line x1="500" y1="0" x2="500" y2="500" />
+            <line x1="600" y1="0" x2="600" y2="500" />
+          </g>
+          <!-- Chart line 1 (white zigzag) -->
+          <polyline
+            points="0,350 80,330 150,250 220,260 300,180 380,200 460,120 540,140 620,80 700,90"
+            stroke="rgba(255,255,255,0.7)"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+            marker-end="url(#arrow-white)"
+          />
+          <!-- Chart line 2 (yellow) -->
+          <polyline
+            points="0,400 100,380 180,320 260,350 340,280 420,300 500,240 580,260 700,200"
+            stroke="rgba(245,197,24,0.5)"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            marker-end="url(#arrow-yellow)"
+          />
+          <!-- Labels -->
+          <text
+            x="520"
+            y="145"
+            fill="rgba(255,255,255,0.45)"
+            font-size="32"
+            font-family="monospace"
+            font-weight="700"
+          >
+            176.4
+          </text>
+          <text
+            x="40"
+            y="120"
+            fill="rgba(255,255,255,0.3)"
+            font-size="24"
+            font-family="monospace"
+          >
+            91.0°
+          </text>
+          <text
+            x="280"
+            y="460"
+            fill="rgba(255,255,255,0.25)"
+            font-size="22"
+            font-family="monospace"
+          >
+            44.31
+          </text>
+          <text
+            x="550"
+            y="420"
+            fill="rgba(255,255,255,0.2)"
+            font-size="26"
+            font-family="monospace"
+          >
+            141.0
+          </text>
+          <!-- 3D box accent bottom right -->
+          <g opacity="0.5">
+            <rect
+              x="530"
+              y="370"
+              width="80"
+              height="60"
+              rx="4"
+              fill="rgba(74,127,193,0.4)"
+              stroke="rgba(100,160,220,0.6)"
+              stroke-width="1.5"
+            />
+            <rect
+              x="550"
+              y="350"
+              width="80"
+              height="60"
+              rx="4"
+              fill="rgba(245,197,24,0.25)"
+              stroke="rgba(245,197,24,0.4)"
+              stroke-width="1.5"
+            />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-info reveal">
+        <p class="contact-label">Contact</p>
+        <h2 class="contact-heading">Let's Work Together</h2>
+
+        <div class="contact-detail reveal delay-1">
+          <p class="contact-detail-label">Email :</p>
+          <p class="contact-detail-value">info@acceleraconsultants.com</p>
+        </div>
+
+        <div class="contact-detail reveal delay-2">
+          <p class="contact-detail-label">Address:</p>
+          <p class="contact-detail-value">
+            1111, Indraprakash, Barakhamba Road,<br />New Delhi - 110001, India
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-form reveal delay-2">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First Name</label>
+            <input type="text" />
+          </div>
+          <div class="form-field">
+            <label>Last Name</label>
+            <input type="text" />
+          </div>
+        </div>
+
+        <div class="form-field full">
+          <label>Email *</label>
+          <input type="email" />
+        </div>
+
+        <div class="form-field full">
+          <label>Message</label>
+          <textarea rows="3"></textarea>
+        </div>
+
+        <button class="btn-yellow" type="button">Submit</button>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.774!2d77.2231!3d28.6315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b741d057%3A0xcdee88e47393c3f1!2sIndraprakash%20Building%2C%20Barakhamba%20Rd%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1640000000000!5m2!1sen!2sin"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Accelera Consultants Location"
+      >
+      </iframe>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>&copy; 2023 by Accelera Consultants</footer>
+
+    <!-- BACK TO TOP -->
+    <div class="back-to-top" id="back-to-top" title="Back to top">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </div>
+
+    <!-- CHAT WIDGET -->
+    <div class="chat-widget" title="Chat with us">
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="13" cy="12" r="10" stroke="white" stroke-width="2" />
+        <path
+          d="M8,17 Q6,22 5,24 Q9,22 12,20"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
+        />
+        <circle cx="9.5" cy="12" r="1.5" fill="white" />
+        <circle cx="13" cy="12" r="1.5" fill="white" />
+        <circle cx="16.5" cy="12" r="1.5" fill="white" />
+      </svg>
+    </div>
+
+    <script>
+      const navbar = document.getElementById('navbar');
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('nav-links');
+      const links = document.querySelectorAll('.nav-links a');
+      const sections = document.querySelectorAll('section[id]');
+
+      // Navbar scroll effect & Active link highlight
+      // Scroll-based parallax and effects
+      const aboutChart = document.getElementById('about-chart');
+
+      window.addEventListener('scroll', () => {
+        // 1. Glassmorphism Scroll Effect
+        if (window.scrollY > 20) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+
+        // 2. Chart Parallax Effect (Upward Movement)
+        const aboutSection = document.getElementById('about');
+        const sectionTop = aboutSection.offsetTop;
+        const scrollOffset = window.scrollY - sectionTop;
+
+        if (
+          scrollOffset > -window.innerHeight &&
+          scrollOffset < aboutSection.offsetHeight
+        ) {
+          const moveValue = scrollOffset * 0.15; // adjust speed
+          aboutChart.style.transform = `translateY(${moveValue}px)`;
+        }
+
+        // 2. Section highlighting
+        let current = '';
+        sections.forEach((sec) => {
+          const sectionTop = sec.offsetTop;
+          if (window.scrollY >= sectionTop - 100) {
+            current = sec.getAttribute('id');
+          }
+        });
+
+        links.forEach((a) => {
+          a.classList.remove('active');
+          if (a.getAttribute('href') === '#' + current) {
+            a.classList.add('active');
+          }
+        });
+      });
+
+      // Mobile menu toggle
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+
+      // Close mobile menu on link click
+      links.forEach((a) => {
+        a.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+
+      // Scroll Reveal Logic
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      // Back to Top Logic
+      const backToTop = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+  </body>
+</html>
