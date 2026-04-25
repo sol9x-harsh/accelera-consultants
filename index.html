@@ -73,9 +73,16 @@
       .logo-wrapper {
         position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
         text-decoration: none;
+        width: 110px;
+        height: 110px;
+      }
+
+      .logo-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
       .logo-circle {
@@ -892,36 +899,11 @@
     <!-- NAVBAR -->
     <nav id="navbar">
       <a href="#home" class="logo-wrapper">
-        <div class="logo-circle">
-          <svg
-            viewBox="0 0 44 44"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8,32 L18,22 L26,28 L38,10"
-              stroke="white"
-              stroke-width="3.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              fill="none"
-            />
-            <polyline
-              points="30,10 38,10 38,18"
-              stroke="white"
-              stroke-width="3.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              fill="none"
-            />
-            <rect x="6" y="34" width="5" height="4" fill="white" rx="1" />
-            <rect x="14" y="28" width="5" height="10" fill="white" rx="1" />
-            <rect x="22" y="24" width="5" height="14" fill="white" rx="1" />
-          </svg>
-        </div>
-        <div class="logo-text-box">
-          <span>ACCELERA CONSULTANTS</span>
-        </div>
+        <img
+          src="logo/logo.png"
+          alt="Accelera Consultants Logo"
+          style="width: 100%; height: 100%; object-fit: contain"
+        />
       </a>
 
       <ul class="nav-links" id="nav-links">
