@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accelera Consultants - Accelerating Your Financial Success</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -31,6 +33,7 @@
         font-family: 'Open Sans', sans-serif;
         color: var(--text-dark);
         overflow-x: hidden;
+        line-height: 1.7;
       }
 
       /* ─── NAVBAR ─── */
@@ -77,6 +80,13 @@
         text-decoration: none;
         width: 110px;
         height: 110px;
+      }
+
+      @media (max-width: 900px) {
+        .logo-wrapper {
+          width: 70px;
+          height: 70px;
+        }
       }
 
       .logo-wrapper img {
@@ -133,9 +143,16 @@
         font-family: 'Raleway', sans-serif;
         font-size: 16px;
         font-weight: 600;
-        transition: color 0.3s;
+        transition:
+          color 0.3s,
+          transform 0.3s ease;
         position: relative;
         padding-bottom: 4px;
+        display: inline-block;
+      }
+
+      .nav-links a:hover {
+        transform: translateY(-2px);
       }
 
       .nav-links a::after {
@@ -167,13 +184,17 @@
         font-weight: 600 !important;
         font-size: 15px !important;
         text-decoration: none;
-        transition: background 0.2s;
+        transition:
+          background 0.2s,
+          transform 0.3s ease;
         white-space: nowrap;
+        display: inline-block;
       }
 
       .nav-cta:hover {
         background: #243f78 !important;
         color: #fff !important;
+        transform: translateY(-2px);
       }
 
       .hamburger {
@@ -195,9 +216,123 @@
         transition: 0.3s;
       }
 
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      /* ─── LOADING SCREEN ─── */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition:
+          opacity 0.5s ease,
+          visibility 0.5s ease;
+      }
+
+      .loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        border-top-color: var(--yellow);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ─── FLOATING ELEMENTS ─── */
+      .floating-element {
+        position: absolute;
+        opacity: 0.12;
+        pointer-events: none;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-element:nth-child(1) {
+        top: 12%;
+        left: 8%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+      }
+
+      .floating-element:nth-child(2) {
+        top: 20%;
+        right: 12%;
+        animation-delay: 1.5s;
+        animation-duration: 5s;
+      }
+
+      .floating-element:nth-child(3) {
+        bottom: 25%;
+        left: 15%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+      }
+
+      .floating-element:nth-child(4) {
+        bottom: 15%;
+        right: 8%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+      }
+
+      .floating-element:nth-child(5) {
+        top: 45%;
+        left: 5%;
+        animation-delay: 1s;
+        animation-duration: 5.5s;
+      }
+
+      .floating-element:nth-child(6) {
+        top: 60%;
+        right: 5%;
+        animation-delay: 2s;
+        animation-duration: 6.5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-25px) rotate(15deg);
+        }
+      }
+
       /* ─── HERO ─── */
       #home {
-        background: var(--yellow);
+        background: linear-gradient(
+          135deg,
+          var(--yellow) 0%,
+          #f5b922 50%,
+          #e8a815 100%
+        );
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -208,22 +343,91 @@
         gap: 80px;
       }
 
+      #home::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+      }
+
+      #home::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(2, 51, 87, 0.08) 1px,
+          transparent 1px
+        );
+        background-size: 30px 30px;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
       .hero-content {
         flex: 1.2;
         max-width: 620px;
         z-index: 2;
         padding-bottom: 40px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards 0.3s;
+      }
+
+      .hero-content .btn-dark {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards 0.7s;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .hero-title {
         font-family: 'Raleway', sans-serif;
         font-size: clamp(46px, 6vw, 82px);
         font-weight: 900;
-        color: var(--navy);
+        background: linear-gradient(
+          135deg,
+          var(--navy) 0%,
+          #1a4a7a 50%,
+          var(--navy) 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         line-height: 1;
         letter-spacing: -2px;
         margin-bottom: 24px;
         text-transform: uppercase;
+        animation: textShine 3s linear infinite;
+      }
+
+      @keyframes textShine {
+        to {
+          background-position: 200% center;
+        }
       }
 
       .hero-sub {
@@ -234,11 +438,13 @@
         letter-spacing: 2px;
         text-transform: uppercase;
         margin-bottom: 40px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards 0.5s;
       }
 
       .btn-dark {
         display: inline-block;
-        background: var(--navy);
+        background: linear-gradient(135deg, var(--navy) 0%, #1a4a7a 100%);
         color: #fff;
         padding: 16px 40px;
         border-radius: 30px;
@@ -252,13 +458,37 @@
           box-shadow 0.3s ease;
         border: none;
         cursor: pointer;
-        box-shadow: 0 4px 15px rgba(26, 47, 90, 0.2);
+        box-shadow:
+          0 4px 15px rgba(26, 47, 90, 0.3),
+          0 0 0 0 rgba(26, 47, 90, 0.7);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-dark::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s ease,
+          height 0.6s ease;
+      }
+
+      .btn-dark:hover::after {
+        width: 300px;
+        height: 300px;
       }
 
       .btn-dark:hover {
-        background: #243f78;
+        background: linear-gradient(135deg, #243f78 0%, #2a5a8a 100%);
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(26, 47, 90, 0.3);
+        box-shadow: 0 8px 25px rgba(26, 47, 90, 0.4);
       }
 
       .hero-illustration {
@@ -267,6 +497,9 @@
         justify-content: center;
         align-items: center;
         max-width: 650px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards 0.5s;
       }
 
       .hero-illustration img {
@@ -316,16 +549,22 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
-        padding: 20px;
+        padding: 30px 24px;
         transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-        border-radius: 12px;
+          transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.4s ease;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        perspective: 1000px;
+        will-change: transform, box-shadow;
       }
 
       .service-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-12px) rotateX(5deg);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       }
 
       .service-icon {
@@ -335,6 +574,21 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        border-radius: 50%;
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        will-change: transform, box-shadow;
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       }
 
       .service-icon svg,
@@ -354,16 +608,32 @@
       .service-desc {
         font-size: 15px;
         color: var(--navy);
-        line-height: 1.65;
+        line-height: 1.75;
         max-width: 380px;
         text-align: center;
       }
 
       /* ─── FOR EVERYONE ─── */
       #for-everyone {
-        background: var(--navy);
+        background: linear-gradient(180deg, var(--navy) 0%, #0a1f3a 100%);
         padding: 80px 60px 100px;
         text-align: center;
+        position: relative;
+      }
+
+      #for-everyone::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 30% 50%,
+          rgba(255, 195, 54, 0.05) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
       }
 
       .everyone-title {
@@ -393,9 +663,19 @@
       .everyone-img {
         width: 100%;
         aspect-ratio: 1;
-        border-radius: 12px;
+        border-radius: 16px;
         overflow: hidden;
-        background: #2a3f6e;
+        background: linear-gradient(135deg, #2a3f6e 0%, #1a2a4e 100%);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        will-change: transform, box-shadow;
+      }
+
+      .everyone-card:hover .everyone-img {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
       }
 
       .everyone-img img {
@@ -425,6 +705,227 @@
         color: #fff;
       }
 
+      /* ─── PROCESS ─── */
+      #process {
+        background: var(--yellow);
+        padding: 100px 60px 120px;
+        text-align: center;
+        position: relative;
+      }
+
+      #process::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      .process-title {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        font-size: clamp(32px, 4vw, 48px);
+        color: var(--navy);
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+      }
+
+      .process-subtitle {
+        font-size: 16px;
+        color: var(--navy);
+        margin-bottom: 80px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
+      }
+
+      .process-timeline {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .process-timeline::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 50px;
+        right: 50px;
+        height: 4px;
+        background: rgba(2, 51, 87, 0.2);
+        z-index: 1;
+      }
+
+      .process-step {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .step-number {
+        width: 80px;
+        height: 80px;
+        background: var(--navy);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--yellow);
+        box-shadow: 0 8px 24px rgba(2, 51, 87, 0.3);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .process-step:hover .step-number {
+        transform: scale(1.1);
+        box-shadow: 0 12px 32px rgba(2, 51, 87, 0.4);
+      }
+
+      .step-title {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--navy);
+        margin-bottom: 12px;
+      }
+
+      .step-desc {
+        font-size: 14px;
+        color: var(--navy);
+        line-height: 1.6;
+        opacity: 0.85;
+      }
+
+      /* ─── FAQ ─── */
+      #faq {
+        background: var(--navy-dark);
+        padding: 100px 60px 120px;
+        position: relative;
+      }
+
+      #faq::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 80% 20%,
+          rgba(255, 195, 54, 0.05) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      .faq-title {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        font-size: clamp(32px, 4vw, 48px);
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+      }
+
+      .faq-subtitle {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        margin-bottom: 60px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
+      }
+
+      .faq-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .faq-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .faq-question {
+        padding: 24px 32px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .faq-question-text {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 17px;
+        color: #fff;
+        line-height: 1.5;
+      }
+
+      .faq-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.open .faq-icon {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.4s ease;
+        will-change: max-height, padding;
+      }
+
+      .faq-item.open .faq-answer {
+        max-height: 500px;
+        will-change: auto;
+      }
+
+      .faq-answer-content {
+        padding: 0 32px 24px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+      }
+
       /* ─── ABOUT / FOUNDERS ─── */
       #about {
         display: grid;
@@ -433,7 +934,7 @@
       }
 
       .about-left {
-        background: var(--yellow);
+        background: linear-gradient(135deg, var(--yellow) 0%, #f5b922 100%);
         padding: 80px 60px 80px 60px;
       }
 
@@ -494,16 +995,33 @@
       .founder-bio {
         font-size: 14.5px;
         color: var(--navy);
-        line-height: 1.7;
+        line-height: 1.8;
+        margin-bottom: 12px;
       }
 
       /* ─── CONTACT ─── */
       #contact {
-        background: var(--navy-dark);
+        background: linear-gradient(180deg, var(--navy-dark) 0%, #0a1428 100%);
         padding: 100px 60px 80px;
         display: grid;
         grid-template-columns: 1fr 1.2fr;
         gap: 80px;
+        position: relative;
+      }
+
+      #contact::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 70% 30%,
+          rgba(255, 195, 54, 0.03) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
       }
 
       .contact-label {
@@ -540,17 +1058,19 @@
       .contact-detail-value {
         font-size: 15px;
         color: rgba(255, 255, 255, 0.8);
-        line-height: 1.6;
+        line-height: 1.7;
       }
 
       .contact-form {
         display: flex;
         flex-direction: column;
         gap: 32px;
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.05);
         padding: 40px;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       }
 
       .form-row {
@@ -610,7 +1130,7 @@
 
       .btn-yellow {
         display: inline-block;
-        background: var(--yellow);
+        background: linear-gradient(135deg, var(--yellow) 0%, #e8a815 100%);
         color: var(--navy);
         padding: 16px 48px;
         border-radius: 30px;
@@ -624,13 +1144,35 @@
           transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
           box-shadow 0.3s ease;
         align-self: flex-start;
-        box-shadow: 0 4px 15px rgba(255, 195, 54, 0.2);
+        box-shadow: 0 4px 15px rgba(255, 195, 54, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-yellow::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s ease,
+          height 0.6s ease;
+      }
+
+      .btn-yellow:hover::after {
+        width: 300px;
+        height: 300px;
       }
 
       .btn-yellow:hover {
-        background: #eeb01e;
+        background: linear-gradient(135deg, #eeb01e 0%, #d4980a 100%);
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(255, 195, 54, 0.3);
+        box-shadow: 0 8px 25px rgba(255, 195, 54, 0.4);
       }
 
       /* ─── MAP ─── */
@@ -657,13 +1199,14 @@
 
       /* ─── FOOTER ─── */
       footer {
-        background: var(--yellow);
+        background: linear-gradient(135deg, var(--yellow) 0%, #e8a815 100%);
         padding: 28px;
         text-align: center;
         font-size: 14px;
         color: var(--navy);
         font-family: 'Open Sans', sans-serif;
         font-weight: 500;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
       }
 
       /* ─── CHAT WIDGET ─── */
@@ -741,11 +1284,13 @@
         transition:
           opacity 0.8s cubic-bezier(0.2, 0.6, 0.2, 1),
           transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+        will-change: opacity, transform;
       }
 
       .reveal.active {
         opacity: 1;
         transform: translateY(0);
+        will-change: auto;
       }
 
       .delay-1 {
@@ -847,6 +1392,27 @@
           gap: 20px;
         }
 
+        #process {
+          padding: 60px 24px 80px;
+        }
+        .process-timeline {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .process-timeline::before {
+          display: none;
+        }
+        .process-step {
+          padding: 0;
+        }
+
+        #faq {
+          padding: 60px 24px 80px;
+        }
+        .faq-container {
+          max-width: 100%;
+        }
+
         #about {
           grid-template-columns: 1fr;
         }
@@ -896,6 +1462,11 @@
     </style>
   </head>
   <body>
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loading-screen">
+      <div class="loading-spinner"></div>
+    </div>
+
     <!-- NAVBAR -->
     <nav id="navbar">
       <a href="#home" class="logo-wrapper">
@@ -910,6 +1481,7 @@
         <li><a href="#home" class="active">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
@@ -924,6 +1496,116 @@
 
     <!-- HERO -->
     <section id="home">
+      <!-- Floating decorative elements -->
+      <svg
+        class="floating-element"
+        width="60"
+        height="60"
+        viewBox="0 0 60 60"
+        fill="none"
+      >
+        <circle
+          cx="30"
+          cy="30"
+          r="25"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+        />
+        <path
+          d="M30 10 L30 50 M10 30 L50 30"
+          stroke="var(--navy)"
+          stroke-width="2"
+        />
+      </svg>
+      <svg
+        class="floating-element"
+        width="40"
+        height="40"
+        viewBox="0 0 40 40"
+        fill="none"
+      >
+        <rect
+          x="5"
+          y="5"
+          width="30"
+          height="30"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+          rx="5"
+        />
+      </svg>
+      <svg
+        class="floating-element"
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+        fill="none"
+      >
+        <polygon
+          points="25,5 45,40 5,40"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+        />
+      </svg>
+      <svg
+        class="floating-element"
+        width="35"
+        height="35"
+        viewBox="0 0 35 35"
+        fill="none"
+      >
+        <circle
+          cx="17.5"
+          cy="17.5"
+          r="12"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+        />
+        <circle cx="17.5" cy="17.5" r="6" fill="var(--navy)" />
+      </svg>
+      <svg
+        class="floating-element"
+        width="45"
+        height="45"
+        viewBox="0 0 45 45"
+        fill="none"
+      >
+        <path
+          d="M22.5 5 L40 40 L5 40 Z"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+        />
+      </svg>
+      <svg
+        class="floating-element"
+        width="30"
+        height="30"
+        viewBox="0 0 30 30"
+        fill="none"
+      >
+        <rect
+          x="5"
+          y="5"
+          width="20"
+          height="20"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+          rx="3"
+        />
+        <path
+          d="M10 15 L15 20 L20 10"
+          stroke="var(--navy)"
+          stroke-width="2"
+          fill="none"
+        />
+      </svg>
+
       <div class="hero-content reveal">
         <h1 class="hero-title">ACCELERA<br />CONSULTANTS</h1>
         <p class="hero-sub">Accelerating Your Financial Success</p>
@@ -933,6 +1615,7 @@
         <img
           src="images/hero_illustration_1.png"
           alt="Business Growth Illustration"
+          loading="lazy"
           style="width: 100%; max-width: 600px; height: auto"
         />
       </div>
@@ -1133,30 +1816,93 @@
       <div class="everyone-grid">
         <div class="everyone-card reveal delay-1">
           <div class="everyone-img">
-            <img src="images/new_business.png" alt="New Business Entity" />
+            <img
+              src="images/new_business.png"
+              alt="New Business Entity"
+              loading="lazy"
+            />
           </div>
           <span class="everyone-label">New Business Entity</span>
         </div>
 
         <div class="everyone-card reveal delay-2">
           <div class="everyone-img">
-            <img src="images/existing_business.png" alt="Existing Business" />
+            <img
+              src="images/existing_business.png"
+              alt="Existing Business"
+              loading="lazy"
+            />
           </div>
           <span class="everyone-label">Existing Business</span>
         </div>
 
         <div class="everyone-card reveal delay-3">
           <div class="everyone-img">
-            <img src="images/fund_raising.png" alt="Fund Raising" />
+            <img
+              src="images/fund_raising.png"
+              alt="Fund Raising"
+              loading="lazy"
+            />
           </div>
           <span class="everyone-label">Fund Raising</span>
         </div>
 
         <div class="everyone-card reveal delay-4">
           <div class="everyone-img">
-            <img src="images/special_situation.png" alt="Special Situation" />
+            <img
+              src="images/special_situation.png"
+              alt="Special Situation"
+              loading="lazy"
+            />
           </div>
           <span class="everyone-label">Special Situation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <h2 class="process-title reveal">Our Process</h2>
+      <p class="process-subtitle reveal">
+        A structured approach to deliver exceptional financial solutions
+        tailored to your business needs
+      </p>
+
+      <div class="process-timeline">
+        <div class="process-step reveal delay-1">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Discovery</h3>
+          <p class="step-desc">
+            Understanding your business goals, financial needs, and current
+            challenges through in-depth consultation
+          </p>
+        </div>
+
+        <div class="process-step reveal delay-2">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Strategy</h3>
+          <p class="step-desc">
+            Developing customized financial strategies and solutions aligned
+            with your objectives
+          </p>
+        </div>
+
+        <div class="process-step reveal delay-3">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Execution</h3>
+          <p class="step-desc">
+            Implementing the agreed strategy with meticulous attention to detail
+            and timeline adherence
+          </p>
+        </div>
+
+        <div class="process-step reveal delay-4">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Results</h3>
+          <p class="step-desc">
+            Delivering measurable outcomes and continuous support to ensure
+            sustained success
+          </p>
         </div>
       </div>
     </section>
@@ -1331,6 +2077,165 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="faq-title reveal">Frequently Asked Questions</h2>
+      <p class="faq-subtitle reveal">
+        Find answers to common questions about our financial consulting services
+      </p>
+
+      <div class="faq-container">
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span class="faq-question-text"
+              >What types of businesses do you work with?</span
+            >
+            <svg
+              class="faq-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              We work with a diverse range of businesses including new startups,
+              existing SMEs, mid-market companies, and businesses in special
+              situations requiring financial restructuring. Our expertise spans
+              across various industries and business stages.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span class="faq-question-text"
+              >How long does the consultation process take?</span
+            >
+            <svg
+              class="faq-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              The initial discovery consultation typically takes 1-2 weeks. The
+              overall timeline depends on the complexity of your requirements
+              and the scope of services needed. We provide clear timelines
+              during our initial engagement.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span class="faq-question-text">What is your fee structure?</span>
+            <svg
+              class="faq-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Our fee structure is tailored to each engagement and can be based
+              on project scope, retainer basis, or success-linked arrangements.
+              We discuss and agree on fees transparently during our initial
+              discussions.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span class="faq-question-text"
+              >Do you assist with international funding?</span
+            >
+            <svg
+              class="faq-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Yes, we have extensive experience in facilitating international
+              funding and can help businesses explore cross-border financing
+              options, including foreign direct investment, external commercial
+              borrowings, and strategic partnerships.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span class="faq-question-text"
+              >Can you help with stressed asset resolution?</span
+            >
+            <svg
+              class="faq-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Absolutely. We specialize in stress resolution services and work
+              closely with legal partners to help businesses navigate corporate
+              insolvency, financial restructuring, and turnaround strategies to
+              restore financial health.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span class="faq-question-text"
+              >What makes Accelera Consultants different?</span
+            >
+            <svg
+              class="faq-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Our founders bring 40+ years of combined experience from leading
+              banks and financial institutions. We offer a unique blend of
+              banking expertise, CA knowledge, and practical business
+              understanding to deliver comprehensive, results-driven financial
+              solutions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact">
       <div class="contact-info reveal">
@@ -1345,7 +2250,8 @@
         <div class="contact-detail reveal delay-2">
           <p class="contact-detail-label">Address:</p>
           <p class="contact-detail-value">
-            1111, Indraprakash, Barakhamba Road,<br />New Delhi - 110001, India
+            105, 1st floor, Indraprakash building,<br />Barakhamba Road, New
+            Delhi 110001
           </p>
         </div>
       </div>
@@ -1379,7 +2285,7 @@
     <!-- MAP -->
     <div class="map-container">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.774!2d77.2231!3d28.6315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b741d057%3A0xcdee88e47393c3f1!2sIndraprakash%20Building%2C%20Barakhamba%20Rd%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1640000000000!5m2!1sen!2sin"
+        src="https://www.google.com/maps?q=Indraprakash+Building,Barakhamba+Road,Connaught+Place,New+Delhi+110001&output=embed"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         title="Accelera Consultants Location"
@@ -1388,7 +2294,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer>&copy; 2023 by Accelera Consultants</footer>
+    <footer>&copy; 2026 by Accelera Consultants</footer>
 
     <!-- BACK TO TOP -->
     <div class="back-to-top" id="back-to-top" title="Back to top">
@@ -1421,6 +2327,14 @@
     </div>
 
     <script>
+      // Loading Screen
+      window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        setTimeout(() => {
+          loadingScreen.classList.add('hidden');
+        }, 800);
+      });
+
       const navbar = document.getElementById('navbar');
       const hamburger = document.getElementById('hamburger');
       const navLinks = document.getElementById('nav-links');
@@ -1439,7 +2353,25 @@
           navbar.classList.remove('scrolled');
         }
 
-        // 2. Chart Parallax Effect (Upward Movement)
+        // 2. Hero Parallax Effect
+        const heroSection = document.getElementById('home');
+        const floatingElements = document.querySelectorAll('.floating-element');
+        const heroIllustration = document.querySelector('.hero-illustration');
+
+        if (window.scrollY < heroSection.offsetHeight) {
+          const scrollPercent = window.scrollY / heroSection.offsetHeight;
+
+          floatingElements.forEach((el, index) => {
+            const speed = 0.3 + index * 0.1;
+            el.style.transform = `translateY(${window.scrollY * speed}px)`;
+          });
+
+          if (heroIllustration) {
+            heroIllustration.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+          }
+        }
+
+        // 3. Chart Parallax Effect (Upward Movement)
         const aboutSection = document.getElementById('about');
         const sectionTop = aboutSection.offsetTop;
         const scrollOffset = window.scrollY - sectionTop;
@@ -1472,6 +2404,7 @@
       // Mobile menu toggle
       hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('open');
+        hamburger.classList.toggle('active');
       });
 
       // Close mobile menu on link click
@@ -1495,6 +2428,30 @@
       );
 
       revealElements.forEach((el) => revealObserver.observe(el));
+
+      // FAQ Accordion Logic
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item) => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        question.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+
+          // Close all other items
+          faqItems.forEach((otherItem) => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            otherItem.classList.remove('open');
+            otherAnswer.style.maxHeight = null;
+          });
+
+          // Toggle current item
+          if (!isOpen) {
+            item.classList.add('open');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
 
       // Back to Top Logic
       const backToTop = document.getElementById('back-to-top');
